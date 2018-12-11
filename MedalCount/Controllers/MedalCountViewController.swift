@@ -22,8 +22,8 @@
 
 import UIKit
 
-final class MedalCountViewController: UIViewController {
-
+final class MedalCountViewController: UIViewController, HasSwipeInterractionControllerProperty {
+  
   // MARK: - IBOutlets
   @IBOutlet weak var medalCountStackView: UIStackView!
   @IBOutlet var countryFlags: [UIImageView]!
@@ -31,21 +31,25 @@ final class MedalCountViewController: UIViewController {
   @IBOutlet var countryGolds: [UILabel]!
   @IBOutlet var countrySilvers: [UILabel]!
   @IBOutlet var countryBronzes: [UILabel]!
-
+  
   // MARK: - Properties
   var medalCount: MedalCount!
-
+  
+  var swipeInteractionController: SwipeInteractionController?
+  
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
+    swipeInteractionController = SwipeInteractionController(viewController: self)
+    
     // Adding these constraints in code becuase storyboard froze when I tried adding the there
     medalCountStackView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       medalCountStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       medalCountStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-    ])
-
+      ])
+    
     for (index, winner) in medalCount.winners.enumerated() {
       countryFlags[index].image = winner.flagImage
       countryNames[index].text = winner.country
@@ -53,14 +57,14 @@ final class MedalCountViewController: UIViewController {
       countrySilvers[index].text = winner.silverString
       countryBronzes[index].text = winner.bronzeString
     }
-
+    
     setupGestureRecognizers()
   }
 }
 
 // MARK: - Private
 private extension MedalCountViewController {
-
+  
   func setupGestureRecognizers() {
     let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureRecognizer:)))
     view.addGestureRecognizer(tapRecognizer)
@@ -69,7 +73,7 @@ private extension MedalCountViewController {
 
 // MARK: - GestureRecognizerSelectors
 private extension MedalCountViewController {
-
+  
   dynamic func handleTap(gestureRecognizer: UITapGestureRecognizer) {
     dismiss(animated: true)
   }

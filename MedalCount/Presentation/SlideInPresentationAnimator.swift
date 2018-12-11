@@ -27,11 +27,15 @@ final class SlideInPresentationAnimator: NSObject {
   // MARK: - Properties
   let direction: PresentationDirection
   let isPresentation: Bool
+  
+  let interactionController: SwipeInteractionController?
+
 
   // MARK: - Initializers
-  init(direction: PresentationDirection, isPresentation: Bool) {
+  init(direction: PresentationDirection, isPresentation: Bool, interactionController: SwipeInteractionController? ) {
     self.direction = direction
     self.isPresentation = isPresentation
+    self.interactionController = interactionController
     super.init()
   }
 }

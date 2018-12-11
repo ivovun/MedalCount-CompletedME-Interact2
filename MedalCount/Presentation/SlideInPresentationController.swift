@@ -1,59 +1,63 @@
-/**
- * Copyright (c) 2016 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+//
+//  SlideInPresentationController.swift
+//  MedalCount
+//
+//  Created by vladimirfilippov on 30/11/2018.
+//  Copyright © 2018 Ron Kliffer. All rights reserved.
+//
 
 import UIKit
 
-final class SlideInPresentationController: UIPresentationController {
-  
-  // MARK: - Properties
+class SlideInPresentationController: UIPresentationController {
+  //1
+  //MARK: - Properties
   fileprivate var dimmingView: UIView!
   private var direction: PresentationDirection
-  
-  override var frameOfPresentedViewInContainerView: CGRect {
+  override var frameOfPresentedViewInContainerView: CGRect  {
+    //1
     var frame: CGRect = .zero
     frame.size = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerView!.bounds.size)
+    
+    //2
     switch direction {
     case .right:
-      frame.origin.x = containerView!.frame.width*(1.0/3.0)
+      frame.origin.x = containerView!.frame.width * (1.0 / 3.0)
     case .bottom:
-      frame.origin.y = containerView!.frame.height*(1.0/3.0)
+      frame.origin.y = containerView!.frame.height * (1.0 / 3.0)
     default:
       frame.origin = .zero
     }
+    
     return frame
   }
   
-  // MARK: - Initializers
-  init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, direction: PresentationDirection) {
+  //2
+  init(presentedViewController: UIViewController,
+       presentingViewController: UIViewController?,
+       direction: PresentationDirection ) {
+    
+    //3
     self.direction = direction
-    super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
+    
+    
+    //4
+    super.init(presentedViewController: presentedViewController, presenting: presentedViewController )
+    
+    //5
     setupDimmingView()
+    
   }
   
+  
   override func presentationTransitionWillBegin() {
+    //1
     containerView?.insertSubview(dimmingView, at: 0)
-    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView": dimmingView]))
-    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView": dimmingView]))
     
+    //2
+    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView" : dimmingView]))
+    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView" : dimmingView]))
+    
+    //3
     guard let coordinator = presentedViewController.transitionCoordinator else {
       dimmingView.alpha = 1.0
       return
@@ -82,15 +86,16 @@ final class SlideInPresentationController: UIPresentationController {
   override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
     switch direction {
     case .left, .right:
-      return CGSize(width: parentSize.width*(2.0/3.0), height: parentSize.height)
-    case .bottom, .top:
-      return CGSize(width: parentSize.width, height: parentSize.height*(2.0/3.0))
+      return CGSize(width: parentSize.width * (2.0 / 3.0), height: parentSize.height)
+    default:
+      return CGSize(width: parentSize.width, height: parentSize.height * (2.0/3.0))
     }
   }
+  
 }
 
-// MARK: - Private
-private extension SlideInPresentationController {
+
+extension SlideInPresentationController {
   
   func setupDimmingView() {
     dimmingView = UIView()
@@ -98,11 +103,12 @@ private extension SlideInPresentationController {
     dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
     dimmingView.alpha = 0.0
     
-    let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
+    let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recogniszer:)))
     dimmingView.addGestureRecognizer(recognizer)
   }
   
-  dynamic func handleTap(recognizer: UITapGestureRecognizer) {
+  dynamic func handleTap(recogniszer: UITapGestureRecognizer) {
     presentingViewController.dismiss(animated: true)
   }
+  
 }

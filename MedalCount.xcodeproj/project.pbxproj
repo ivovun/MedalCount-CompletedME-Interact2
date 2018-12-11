@@ -14,6 +14,7 @@
 		0E15D2321D2ADA7E00A2E90B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E15D2301D2ADA7E00A2E90B /* LaunchScreen.storyboard */; };
 		0E15D23A1D2ADA8F00A2E90B /* GamesData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E15D2391D2ADA8F00A2E90B /* GamesData.plist */; };
 		0E3A1C421D32DEED00B3DD9C /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A1C411D32DEED00B3DD9C /* SlideInPresentationManager.swift */; };
+		0E6BDA1421BFCB1900CFEA95 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6BDA1321BFCB1900CFEA95 /* SwipeInteractionController.swift */; };
 		0E86E0F81D605817002C0066 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86E0F61D605817002C0066 /* Games.swift */; };
 		0E86E0F91D605817002C0066 /* GamesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86E0F71D605817002C0066 /* GamesDataStore.swift */; };
 		0E9803301D32DB0D00DBA30B /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98032F1D32DB0D00DBA30B /* SlideInPresentationAnimator.swift */; };
@@ -35,6 +36,7 @@
 		0E15D2331D2ADA7E00A2E90B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E15D2391D2ADA8F00A2E90B /* GamesData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GamesData.plist; sourceTree = "<group>"; };
 		0E3A1C411D32DEED00B3DD9C /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
+		0E6BDA1321BFCB1900CFEA95 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
 		0E86E0F61D605817002C0066 /* Games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		0E86E0F71D605817002C0066 /* GamesDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesDataStore.swift; sourceTree = "<group>"; };
 		0E98032F1D32DB0D00DBA30B /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		0ECF8F121D454E5B00876082 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0E6BDA1321BFCB1900CFEA95 /* SwipeInteractionController.swift */,
 				0E98032F1D32DB0D00DBA30B /* SlideInPresentationAnimator.swift */,
 				0EA5FA0E1D32CF9800EB29D8 /* SlideInPresentationController.swift */,
 				0E3A1C411D32DEED00B3DD9C /* SlideInPresentationManager.swift */,
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EDB647B1D3248B30000FA79 /* MedalWinner.swift in Sources */,
+				0E6BDA1421BFCB1900CFEA95 /* SwipeInteractionController.swift in Sources */,
 				0E15D22A1D2ADA7E00A2E90B /* MainViewController.swift in Sources */,
 				0EDB64651D32403B0000FA79 /* GamesTableViewController.swift in Sources */,
 				0E9803301D32DB0D00DBA30B /* SlideInPresentationAnimator.swift in Sources */,
