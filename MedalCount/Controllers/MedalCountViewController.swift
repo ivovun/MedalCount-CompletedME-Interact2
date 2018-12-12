@@ -41,7 +41,7 @@ final class MedalCountViewController: UIViewController, HasSwipeInterractionCont
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    swipeInteractionController = SwipeInteractionController(viewController: self)
+    swipeInteractionController = SwipeInteractionController(viewController: self, direction: .bottom)
     
     // Adding these constraints in code becuase storyboard froze when I tried adding the there
     medalCountStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +75,6 @@ private extension MedalCountViewController {
 private extension MedalCountViewController {
   
   dynamic func handleTap(gestureRecognizer: UITapGestureRecognizer) {
-    dismiss(animated: true)
+    //dismiss(animated: true)
   }
 }

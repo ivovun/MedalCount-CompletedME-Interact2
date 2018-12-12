@@ -32,7 +32,7 @@ final class SlideInPresentationAnimator: NSObject {
 
 
   // MARK: - Initializers
-  init(direction: PresentationDirection, isPresentation: Bool, interactionController: SwipeInteractionController? ) {
+  init(direction: PresentationDirection, isPresentation: Bool, interactionController: SwipeInteractionController?) {
     self.direction = direction
     self.isPresentation = isPresentation
     self.interactionController = interactionController

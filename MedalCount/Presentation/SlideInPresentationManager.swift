@@ -42,21 +42,21 @@ extension SlideInPresentationManager:UIViewControllerTransitioningDelegate {
   //returns the animation controller for presenting the view controller
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    guard let  tvc = presented as? HasSwipeInterractionControllerProperty else {
+    guard let  presented = presented as? HasSwipeInterractionControllerProperty else {
       return SlideInPresentationAnimator(direction: direction, isPresentation: true, interactionController: nil )
     }
     
-    return SlideInPresentationAnimator(direction: direction, isPresentation: true, interactionController: tvc.swipeInteractionController )
+    return SlideInPresentationAnimator(direction: direction, isPresentation: true, interactionController: presented.swipeInteractionController )
   }
   
   //returns the animation controller for dismissing the view controller
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    guard let  tvc = dismissed as? HasSwipeInterractionControllerProperty else {
+    guard let  dismissed = dismissed as? HasSwipeInterractionControllerProperty else {
       return SlideInPresentationAnimator(direction: direction, isPresentation: true, interactionController: nil )
     }
     
-    return SlideInPresentationAnimator(direction: direction, isPresentation: false, interactionController: tvc.swipeInteractionController )
+    return SlideInPresentationAnimator(direction: direction, isPresentation: false, interactionController: dismissed.swipeInteractionController )
   }
   
   func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning)

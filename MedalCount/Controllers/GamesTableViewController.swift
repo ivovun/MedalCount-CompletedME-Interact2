@@ -36,7 +36,7 @@ final class GamesTableViewController: UITableViewController, HasSwipeInterractio
   
   
   override func viewDidLoad() {
-    swipeInteractionController = SwipeInteractionController(viewController: self)
+    swipeInteractionController = SwipeInteractionController(viewController: self, direction: .right)
   }
 }
 

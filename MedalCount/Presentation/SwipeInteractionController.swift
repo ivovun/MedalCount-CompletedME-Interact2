@@ -15,19 +15,25 @@ protocol HasSwipeInterractionControllerProperty {
 
 class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
   
+  // идея взяту тут
+  //https://www.raywenderlich.com/322-custom-uiviewcontroller-transitions-getting-started
+  
   var interactionInProgress = false //as the name suggests, indicates whether an interaction is already happening.
+  var direction: PresentationDirection
   
   private var shouldCompleteTransition = false //will be used internally to control the transition
   private weak var viewController: UIViewController! //is a reference to the view controller to which this interaction controller is attached.
   
-  init(viewController: UIViewController) {
-    super.init()
+  init(viewController: UIViewController, direction: PresentationDirection) {
     self.viewController = viewController
-    prepareGestureRecignizer(in: viewController.view)
+    self.direction = direction
+    super.init()
+
+    prepareGestureRecognizer(in: viewController.view)
   }
   
   
-  private func prepareGestureRecignizer(in view: UIView) {
+  private func prepareGestureRecognizer(in view: UIView) {
     let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
     
     view.addGestureRecognizer(gesture)
@@ -39,7 +45,23 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
     //1
     
     let translation  = gestureRecognizer.translation(in: gestureRecognizer.view!.superview) //local variables to track the progress of the swipe. You fetch the translation in the view and calculate the progress. A swipe of 200 or more points will be considered enough to complete the transition.
-    var progress = translation.x / 200
+    
+    var progress: CGFloat = 0.0
+    
+    switch direction {
+    case .left:
+      progress = -translation.x
+    case .right:
+      progress =  translation.x
+    case .bottom:
+      progress =  translation.y
+    default:
+      progress = 0.0
+    }
+
+    progress = progress / 200
+    
+    //var progress =  direction == PresentationDirection.right ? translation.x / 200 : translation.y / 200
     progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
     
     
