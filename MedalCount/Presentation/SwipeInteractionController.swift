@@ -21,7 +21,14 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
   var interactionInProgress = false //as the name suggests, indicates whether an interaction is already happening.
   var direction: PresentationDirection
   
-  private var shouldCompleteTransition = false //will be used internally to control the transition
+  private var shouldCompleteTransition = false
+  {
+    didSet{
+      if shouldCompleteTransition {
+        print("shouldCompleteTransition = \(shouldCompleteTransition)")
+      }
+    }
+  }//will be used internally to control the transition
   private weak var viewController: UIViewController! //is a reference to the view controller to which this interaction controller is attached.
   
   init(viewController: UIViewController, direction: PresentationDirection) {
@@ -34,6 +41,7 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
   
   
   private func prepareGestureRecognizer(in view: UIView) {
+    //let gesture = UIPanGestureRecognizer(
     let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
     
     view.addGestureRecognizer(gesture)
@@ -59,22 +67,25 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
       progress = 0.0
     }
 
-    progress = progress / 200
+    progress = progress / 600
     
     //var progress =  direction == PresentationDirection.right ? translation.x / 200 : translation.y / 200
     progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
     
+    //print("progress = \(progress)")
     
     switch gestureRecognizer.state {
       
     //2
     case .began: //When the gesture starts, you set interactionInProgress to true and trigger the dismissal of the view controller.
       interactionInProgress = true
+//      viewController.view.frame.origin.x = viewController.view.frame.origin.x + progress
       viewController.dismiss(animated: true, completion: nil)
       
     //3
     case .changed:
-      shouldCompleteTransition = progress > 0.5
+      shouldCompleteTransition = progress > 0.15
+//      viewController.view.frame.origin.x = viewController.view.frame.origin.x + progress * 300
       update(progress)
       
     //4
@@ -88,6 +99,7 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
       if shouldCompleteTransition {
         finish()
       } else {
+        print("canceled")
         cancel()
       }
       
