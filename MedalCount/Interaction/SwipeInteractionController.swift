@@ -22,13 +22,8 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
   var direction: PresentationDirection
   
   private var shouldCompleteTransition = false
-  {
-    didSet{
-      if shouldCompleteTransition {
-        print("shouldCompleteTransition = \(shouldCompleteTransition)")
-      }
-    }
-  }//will be used internally to control the transition
+  
+  //will be used internally to control the transition
   private weak var viewController: UIViewController! //is a reference to the view controller to which this interaction controller is attached.
   
   init(viewController: UIViewController, direction: PresentationDirection) {
@@ -38,7 +33,7 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
 
     prepareGestureRecognizer(in: viewController.view)
   }
-  
+ 
   
   private func prepareGestureRecognizer(in view: UIView) {
     //let gesture = UIPanGestureRecognizer(

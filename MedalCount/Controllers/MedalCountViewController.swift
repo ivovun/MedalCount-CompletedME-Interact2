@@ -75,6 +75,6 @@ private extension MedalCountViewController {
 private extension MedalCountViewController {
   
   dynamic func handleTap(gestureRecognizer: UITapGestureRecognizer) {
-    //dismiss(animated: true)
+    dismiss(animated: true)
   }
 }

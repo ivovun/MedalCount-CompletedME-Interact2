@@ -82,6 +82,7 @@
 			children = (
 				0E49B1C11D3239EE00A8B416 /* Controllers */,
 				0EDDD5501D317792005DF417 /* Model */,
+				0E491CA121C2D9510066E280 /* Interaction */,
 				0ECF8F121D454E5B00876082 /* Presentation */,
 				954CF27C1D4811BE00CAD528 /* Views */,
 				0E15D2271D2ADA7E00A2E90B /* AppDelegate.swift */,
@@ -92,6 +93,14 @@
 				0E15D2391D2ADA8F00A2E90B /* GamesData.plist */,
 			);
 			path = MedalCount;
+			sourceTree = "<group>";
+		};
+		0E491CA121C2D9510066E280 /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				0E6BDA1321BFCB1900CFEA95 /* SwipeInteractionController.swift */,
+			);
+			path = Interaction;
 			sourceTree = "<group>";
 		};
 		0E49B1C11D3239EE00A8B416 /* Controllers */ = {
@@ -107,7 +116,6 @@
 		0ECF8F121D454E5B00876082 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0E6BDA1321BFCB1900CFEA95 /* SwipeInteractionController.swift */,
 				0E98032F1D32DB0D00DBA30B /* SlideInPresentationAnimator.swift */,
 				0EA5FA0E1D32CF9800EB29D8 /* SlideInPresentationController.swift */,
 				0E3A1C411D32DEED00B3DD9C /* SlideInPresentationManager.swift */,
