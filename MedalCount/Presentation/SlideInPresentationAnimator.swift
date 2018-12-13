@@ -23,14 +23,14 @@
 import UIKit
 
 final class SlideInPresentationAnimator: NSObject {
-
+  
   // MARK: - Properties
   let direction: PresentationDirection
   let isPresentation: Bool
   
   let interactionController: SwipeInteractionController?
-
-
+  
+  
   // MARK: - Initializers
   init(direction: PresentationDirection, isPresentation: Bool, interactionController: SwipeInteractionController?) {
     self.direction = direction
@@ -54,7 +54,7 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
     if isPresentation {
       transitionContext.containerView.addSubview(controller.view)
     }
-
+    
     let presentedFrame = transitionContext.finalFrame(for: controller)
     var dismissedFrame = presentedFrame
     switch direction {
@@ -67,10 +67,10 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
     case .bottom:
       dismissedFrame.origin.y = transitionContext.containerView.frame.size.height
     }
-
+    
     let initialFrame = isPresentation ? dismissedFrame : presentedFrame
     let finalFrame = isPresentation ? presentedFrame : dismissedFrame
-
+    
     let animationDuration = transitionDuration(using: transitionContext)
     controller.view.frame = initialFrame
     
@@ -79,14 +79,14 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
       
     }) { (finished) in
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//      transitionContext.cancelInteractiveTransition()
-
+      //      transitionContext.cancelInteractiveTransition()
+      
     }
     
-//    UIView.animate(withDuration: animationDuration, animations: {
-//      controller.view.frame = finalFrame
-//    }) { finished in
-//      transitionContext.completeTransition(finished)
-//    }
+    //    UIView.animate(withDuration: animationDuration, animations: {
+    //      controller.view.frame = finalFrame
+    //    }) { finished in
+    //      transitionContext.completeTransition(finished)
+    //    }
   }
 }
