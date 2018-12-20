@@ -80,6 +80,9 @@ class SlideInPresentationController: UIPresentationController {
   }
   
   override func containerViewWillLayoutSubviews() {
+    
+    
+    
     presentedView?.frame = frameOfPresentedViewInContainerView
   }
   
